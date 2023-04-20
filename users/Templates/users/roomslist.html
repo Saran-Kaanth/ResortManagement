@@ -1,0 +1,21 @@
+
+{% block title %}Rooms{% endblock title %}
+</br></br>
+{% block content %}
+{% for room in rooms_list %}
+<div class="card">
+<div class="card-header">
+<span class="font-weight-bold">{{ room.room_no }}</span> &middot;
+<span class="text-muted">by {{ room.room_type }} |
+{{ room.is_available }}</span>
+</div>
+<div class="card-body">
+{{ room.room_price }}
+</div>
+<div class="card-footer text-center text-muted">
+<a href="#">Edit</a> | <a href="#">Delete</a>
+</div>
+</div>
+<br />
+{% endfor %}
+{% endblock content %}
