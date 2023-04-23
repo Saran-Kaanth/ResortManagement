@@ -20,6 +20,11 @@ class RoomsCreationView(FormView):
         message="Data Saved Successfully"
         form=self.form_class
         return render(self.request,"users/room_creation.html",locals())
+
+    def form_invalid(self, form):
+        error_message="Check with your data"
+        form=self.form_class
+        return render(self.request,"users/room_creation.html",locals())
         
         # return super().form_valid(form)
     # def post(self,request,*args,**kwargs):

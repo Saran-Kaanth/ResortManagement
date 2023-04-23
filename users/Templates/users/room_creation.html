@@ -10,7 +10,13 @@
     <div class="container mt-3">
         {% if message %}
         <div class="alert alert-success">
-            <strong>Success!</strong> Rooms added!
+            <strong>Success!</strong> {{message}}
+        </div>    
+        {% endif %}
+
+        {% if error_message %}
+        <div class="alert alert-danger">
+            <strong>Error!</strong> {{error_message}}
         </div>    
         {% endif %}
     </div>
@@ -37,7 +43,7 @@
         <table>
         </br>
         <div style="padding-left:45%;">
-            <input type="submit" label="submit" name="label" value="Submit">&nbsp;&nbsp;&nbsp;<a href= {% url 'login' %}>Login</a>
+            <input type="submit" label="submit" name="label" value="Submit">&nbsp;&nbsp;&nbsp;<a href= {% url 'logout' %}>Logout</a>
         </div>  
     </form>  
         {% endblock %}
