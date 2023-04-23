@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic.edit import FormView
 from django.contrib.admin.views.decorators import staff_member_required
-
+from django.contrib import messages
 import rooms
 from .forms import *
 from django.urls import reverse_lazy
@@ -14,9 +14,14 @@ class RoomsCreationView(FormView):
     success_url=reverse_lazy('staffhome')
     template_name='users/room_creation.html'
 
+
     def form_valid(self, form) :
         form.save()
-        return super().form_valid(form)
+        message="Data Saved Successfully"
+        form=self.form_class
+        return render(self.request,"users/room_creation.html",locals())
+        
+        # return super().form_valid(form)
     # def post(self,request,*args,**kwargs):
     #     print(request.POST)
     #     return super().post(request,*args,**kwargs)
