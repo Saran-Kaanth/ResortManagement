@@ -30,4 +30,5 @@ urlpatterns = [
     path('staffregister/',user_views.StaffCreationView.as_view(),name="staffregister"),
     path('createroom/',rooms_views.RoomsCreationView.as_view(),name="createroom"),
     path('roomslist/',rooms_views.RoomsListView.as_view(),name="roomslist"),
+    path('sample/',rooms_views.SampleView.as_view(),name='sample'),
 ]

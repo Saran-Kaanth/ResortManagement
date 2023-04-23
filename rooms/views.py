@@ -24,3 +24,14 @@ class RoomsCreationView(FormView):
 class RoomsListView(ListView):
     model=Rooms
     template_name="users/roomslist.html"
+
+class SampleView(FormView):
+    form_class=SampleForm
+    template_name: str='users/sample.html'
+
+    def post(self, request,*args,**kwargs):
+        print(request.POST)
+        form=self.form_class()
+        name=request.POST['name']
+        age=request.POST['age']
+        return render(self.request,"users/sample.html",locals())
