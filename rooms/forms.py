@@ -9,3 +9,6 @@ class RoomsCreationForm(forms.ModelForm):
 class SampleForm(forms.Form):
     name=forms.CharField(max_length=10)
     age=forms.IntegerField()
+
+# class RoomsSearchFrom(forms.Form):
+#     check_in=forms.DateTimeField(input_formats=)

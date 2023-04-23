@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django.urls import reverse
 
 # Create your models here.
 class Rooms(models.Model):
@@ -15,3 +16,6 @@ class Rooms(models.Model):
 
     def __str__(self):
         return str(self.room_no)
+    
+    def get_absolute_url(self):
+        return reverse("room_detail",kwargs={"pk":self.pk})

@@ -1,3 +1,4 @@
+from queue import Empty
 from django.shortcuts import render
 from django.views.generic.edit import FormView
 from django.contrib.admin.views.decorators import staff_member_required
@@ -34,6 +35,17 @@ class RoomsCreationView(FormView):
 class RoomsListView(ListView):
     model=Rooms
     template_name="users/roomslist.html"
+
+    def get(self, request, *args, **kwargs) :
+        print(request.GET.get('email'))
+        print(request.GET.values)
+        if request.GET.get('email') is None:
+            return render(self.request,"users/roomslist.html",locals())     
+        else:    
+            print(request.GET['email'])   
+            name=request.GET['email']
+            return render(self.request,"users/roomslist.html",locals())
+
 
 class SampleView(FormView):
     form_class=SampleForm
