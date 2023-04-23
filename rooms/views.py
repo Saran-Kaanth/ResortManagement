@@ -35,16 +35,26 @@ class RoomsCreationView(FormView):
 class RoomsListView(ListView):
     model=Rooms
     template_name="users/roomslist.html"
+    context_object_name="rooms_list"
 
-    def get(self, request, *args, **kwargs) :
-        print(request.GET.get('email'))
-        print(request.GET.values)
-        if request.GET.get('email') is None:
-            return render(self.request,"users/roomslist.html",locals())     
-        else:    
-            print(request.GET['email'])   
-            name=request.GET['email']
-            return render(self.request,"users/roomslist.html",locals())
+    def get_queryset(self) :
+        print("hii")
+        return super().get_queryset()
+
+    def get_context_data(self, **kwargs):
+        print(self.request.GET)
+        context=super(RoomsListView,self).get_context_data(**kwargs)
+        context['form']=RoomsSearchFrom()
+        return context
+
+
+    # def get(self, request, *args, **kwargs) :
+    #     print(request.GET)
+    #     if request.GET.get('email') is None:
+    #         return super().get(request, *args, **kwargs)
+    #         # return render(self.request,"users/roomslist.html",locals())     
+    #     else:    
+    #         return render(self.request,"users/roomslist.html",locals())
 
 
 class SampleView(FormView):
