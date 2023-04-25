@@ -35,20 +35,22 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.email
     
-class Rooms(models.Model):
-    room_no=models.AutoField(primary_key=True)
-    room_type=models.TextField(max_length=200)
-    room_price=models.IntegerField(default=0)
-    # room_status=models.TextField(max_length=200)
-    room_available=models.BooleanField(default=True)
+# class Rooms(models.Model):
+#     room_no=models.AutoField(primary_key=True)
+#     room_type=models.TextField(max_length=200)
+#     room_price=models.IntegerField(default=0)
+#     # room_status=models.TextField(max_length=200)
+#     room_available=models.BooleanField(default=True)
     
-class Reservation(models.Model):
-    reservation_choices=(('Check In','Checked In'),
-                         ('Check Out','Checked Out'),
-                        ('Hold','On Hold'))
+# class Reservation(models.Model):
+#     reservation_choices=(('Check In','Checked In'),
+#                          ('Check Out','Checked Out'),
+#                         ('Hold','On Hold'))
     
-    room_link=models.OneToOneField(Rooms, verbose_name=_("Room No"), on_delete=models.CASCADE,blank=True)
-    user_link=models.ForeignKey(CustomUser,on_delete=models.CASCADE)
-    reservation_status=models.TextField(max_length=40,choices=reservation_choices,default='On Hold')
+#     booked_room=models.OneToOneField(Rooms, verbose_name=_("Room No"), on_delete=models.CASCADE,blank=True)
+#     booked_by=models.ForeignKey(CustomUser,on_delete=models.CASCADE)
+#     reservation_status=models.TextField(max_length=40,choices=reservation_choices,default='On Hold')
     
-    
+#     def __str__(self):
+#         return str(self.booked_room)
+

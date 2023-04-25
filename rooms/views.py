@@ -7,6 +7,7 @@ import rooms
 from .forms import *
 from django.urls import reverse_lazy
 from django.views.generic import ListView
+from .models import Rooms
 # Create your views here.
 
 # @staff_member_required
@@ -39,12 +40,21 @@ class RoomsListView(ListView):
 
     def get_queryset(self) :
         print("hii")
-        return super().get_queryset()
+        rooms_list=Rooms.objects.raw("select * from rooms_Rooms limit 2")
+        # print(rooms_list)
+        for room in Rooms.objects.raw("select * from rooms_Rooms"):
+            print(room)
+        return rooms_list
 
     def get_context_data(self, **kwargs):
         print(self.request.GET)
+        print(not self.request.GET)
         context=super(RoomsListView,self).get_context_data(**kwargs)
         context['form']=RoomsSearchFrom()
+        context['rooms_list']=Rooms.objects.raw("select * from rooms_Rooms  where room_type='Classic' and room_no='C324'")
+        if not self.request.GET:
+            context['name']='saran'
+        print(context)
         return context
 
 
